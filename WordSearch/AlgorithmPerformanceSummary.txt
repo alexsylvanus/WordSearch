@@ -1,0 +1,19 @@
+Word Search Algorithm Summaries
+
+	For very large n, it is effectively impossible to use selection or insertion sort on the word reference list.
+In trying to calculate the runtime for both algorithms, I couldn't finish the list when the array size was set to
+90,000. After 20 minutes, the algorithms still had not finished sorting. Merge sort typically ran in about 8.6
+seconds for the full length array, and the heap sort algorithm typically ran in about 7.1 seconds. For sorting
+large volumes of data, it is only practical to use algorithms at least of type O(nlog(n)). I would even argue that
+it is dangerous to try and implement O(n^2) type algorithms, especially if working in a terminal where quitting in
+the middle of the sort isn't and easy thing to implement. The search algorithms did much better, but for large grids
+that produce many combinations of words, the binary search algorithm slows down the ability to check if character
+combinations are words considerably. For the list of 90,000 words, it took about 4 seconds to check if a combination
+was a word or not, and for the 15x15 grid which can make 19,800 different combinations of words greater than four
+characters, it is not viable to implement the binary search algorithm for this task or else it would take about 22
+hours to complete. This is where the advantage of storing the word database as a hash table comes in. It's practically
+instant for the hash algorithm to check a character combination with the word list, which makes binds the runtime
+to the time it takes to put all the combinations into a vector, which is also near instant. For the 15x15 grid, my
+algorithm only took about 1.7 seconds to find all possible words in the grid. However, while hashing is good at
+matching variables to a database, it's not very good at retrieving data from that database, due to it's structure of
+having possible uninitialized memory. Arrays are good for accessing data, while hashing is good for comparing data.
